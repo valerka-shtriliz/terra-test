@@ -19,7 +19,7 @@ sudo usermod -aG docker $USER
 sudo systemctl enable docker
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
-sudo mkdir ~/compose
+mkdir ~/compose
 cd ~/compose
 printf "version: '3.1'
 
@@ -47,7 +47,7 @@ services:
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
-      - ./db:/var/lib/mysql" > ./compose/docker-compose.yml
+      - ./db:/var/lib/mysql" > ~/compose/docker-compose.yml
 sudo docker-compose build
 sudo docker-compose up
 
