@@ -17,11 +17,11 @@ sudo docker run hello-world
 sudo groupadd docker
 sudo usermod -aG docker $USER
 sudo systemctl enable docker
- sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
- sudo chmod +x /usr/local/bin/docker-compose
- cd ~
- sudo mkdir ./compose
- printf "version: '3.1'
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo mkdir ~/compose
+cd ~/compose
+printf "version: '3.1'
 
 services:
 
@@ -36,7 +36,7 @@ services:
       WORDPRESS_DB_PASSWORD: examplepass
       WORDPRESS_DB_NAME: exampledb
     volumes:
-      - wordpress:/var/www/html
+      - ./wordpress:/var/www/html
 
   dbwp4:
     image: mysql:5.7
@@ -47,7 +47,7 @@ services:
       MYSQL_PASSWORD: examplepass
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
-      - db:/var/lib/mysql" > ./compose/docker-compose.yml
+      - ./db:/var/lib/mysql" > ./compose/docker-compose.yml
 sudo docker-compose build
 sudo docker-compose up
 
