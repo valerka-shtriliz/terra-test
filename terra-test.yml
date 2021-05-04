@@ -1,0 +1,35 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI-terraform-test
+
+# Controls when the action will run. 
+on:
+    branches: [ study ]
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: execute ssh command via using private key
+        uses: vashvets/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          key: ${{ secrets.CICD_SSH_KEY }}
+          port: ${{ secrets.PORT }}
+
+      # Run
+      - name: Run bash1
+        run: cd ~/terra
+      - name: Run bash2
+        run: terraform init
+      - name: Run bash3
+        run: terraform apply -y
+        
+        
+          
+          
+        
+
+     
